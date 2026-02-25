@@ -1,53 +1,84 @@
-function LanyardCard({ name, role, selectedCard }) {
+function LanyardCard({ selectedCard, lanyardSize, lanyardColor }) {
+  if (!selectedCard) return null;
+
+const sizeConfig = {
+  "1": { cardWidth: 450, strapHeight: 270, strapWidth: 70 },
+  "7/8": { cardWidth: 400, strapHeight: 240, strapWidth: 60 },
+  "3/4": { cardWidth: 350, strapHeight: 210, strapWidth: 50 },
+  "5/8": { cardWidth: 300, strapHeight: 180, strapWidth: 40 },
+  "1/2": { cardWidth: 260, strapHeight: 150, strapWidth: 30 },
+};
+
+const currentSize = sizeConfig[lanyardSize] || sizeConfig["3/4"];
+
   return (
-    <div className="relative flex flex-col items-center mt-6">
-
-      {/* Lanyard String */}
-      <div className="w-1 h-12 bg-gray-700 rounded mb-2"></div>
-
-      {/* Card */}
-      <div className="relative w-72">
-
-        {/* Card image */}
-        {/* <img
-  src={selectedCard.src}
-  alt={selectedCard.title}
-  className="block rounded-xl shadow-lg"
-  style={{ width: `${selectedCard.width}px`, height: `${selectedCard.height}px` }}
-/> */}
-        <img
-          src={selectedCard.src} 
-          alt={selectedCard.title}
-          className="w-full rounded-lg shadow-lg"
-           style={{ width: '460px', height: '' }} // Adjust to the actual PNG dimensions
+  <div className="relative inline-block">
+    {/* Lanyard strap */}
+    <div
+      className="mx-auto mb-2 rounded"
+      style={{
+        width: `${currentSize.strapWidth}px`,
+        height: `${currentSize.strapHeight}px`,
+        backgroundColor: lanyardColor,
+      }}
     />
 
-
-        {/* Overlay with name and role */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-          <div className="w-20 h-20 mb-3 rounded-full bg-white flex items-center justify-center text-gray-700 font-bold shadow">
-            {name ? name.charAt(0).toUpperCase() : "?"}
-          </div>
-
-          <h2 className="text-lg font-bold text-black drop-shadow">
-            {name || "Your Name"}
-          </h2>
-          <p className="text-sm text-black drop-shadow">
-            {role}
-          </p>
-        </div>
-
-      </div>
-    </div>
-  );
+    {/* Card */}
+    <img
+      src={selectedCard.src}
+      alt={selectedCard.title}
+      className="block rounded-lg shadow-lg"
+      style={{ width: `${currentSize.cardWidth}px` }}
+    />
+  </div>
+);
 }
 
 export default LanyardCard;
 
+// {
+//   return (
+//     <div className="relative flex flex-col items-center mt-6">
+
+//       {/* Lanyard String */}
+//       <div className="w-1 h-12 bg-gray-700 rounded mb-2"></div>
+
+//       {/* Card */}
+//       <div className="relative inline-block">
+
+//         {/* Card image */}
+//         {/* <img
+//   src={selectedCard.src}
+//   alt={selectedCard.title}
+//   className="block rounded-xl shadow-lg"
+//   style={{ width: `${selectedCard.width}px`, height: `${selectedCard.height}px` }}
+// /> */}
+//         <img
+//           src={selectedCard.src} 
+//           alt={selectedCard.title}
+//           className="w-full rounded-lg shadow-lg"
+//            style={{ width: '400px', height: '' }} 
+//     />
 
 
+//         {/* Overlay with name and role */}
+//         <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+//           <div className="w-20 h-20 mb-3 rounded-full bg-white flex items-center justify-center text-gray-700 font-bold shadow">
+//             {name ? name.charAt(0).toUpperCase() : "?"}
+//           </div>
 
+//           <h2 className="text-lg font-bold text-black drop-shadow">
+//             {name || "Your Name"}
+//           </h2>
+//           <p className="text-sm text-black drop-shadow">
+//             {role}
+//           </p>
+//         </div>
 
+//       </div>
+//     </div>
+//   );
+// }
 
 
 
