@@ -1,9 +1,9 @@
-function LanyardSize({ lanyardSize, setLanyardSize }) {
+function LanyardSizeSelector({ lanyardSize, setLanyardSize }) {
   const sizes = ["1", "7/8", "3/4", "5/8", "1/2"];
 
   return (
     <div className="mb-4">
-      <h3 className="text-md font-semibold mb-2">Lanyard Size</h3>
+      <h3 className="text-md font-semibold mb-2">Lanyard Sizes</h3>
       <div className="flex gap-2">
         {sizes.map((size) => (
   <button
@@ -15,7 +15,7 @@ function LanyardSize({ lanyardSize, setLanyardSize }) {
         : "bg-white text-gray-700 border-gray-300 hover:border-blue-300"
     }`}
   >
-    {size}"
+    {size}
   </button>
 ))}
       </div>
@@ -23,4 +23,4 @@ function LanyardSize({ lanyardSize, setLanyardSize }) {
   );
 }
 
-export default LanyardSize;
+export default LanyardSizeSelector;
