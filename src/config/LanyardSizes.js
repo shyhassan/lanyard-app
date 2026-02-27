@@ -2,17 +2,17 @@ export const lanyardSizes = {
   "1": {
     cardWidth: 500,
     strapHeight: 270,
-    strapWidth: 50,
+    strapWidth: 40,
 
     left: {
       rotate: -20,
-      translateX: "-230%",
+      translateX: "-278%",
       origin: "top right",
     },
 
     right: {
       rotate: 20,
-      translateX: "130%",
+      translateX: "178%",
       origin: "top left",
     },
 
@@ -22,7 +22,27 @@ export const lanyardSizes = {
   "7/8": {
     cardWidth: 400,
     strapHeight: 240,
-    strapWidth: 40,
+    strapWidth: 35,
+
+    left: {
+      rotate: -22,
+      translateX: "-310%",
+      origin: "top right",
+    },
+
+    right: {
+      rotate: 22,
+      translateX: "210%",
+      origin: "top left",
+    },
+
+    connectorHeight: 45,
+  },
+
+  "3/4": {
+    cardWidth: 350,
+    strapHeight: 210,
+    strapWidth: 35,
 
     left: {
       rotate: -22,
@@ -36,26 +56,6 @@ export const lanyardSizes = {
       origin: "top left",
     },
 
-    connectorHeight: 45,
-  },
-
-  "3/4": {
-    cardWidth: 350,
-    strapHeight: 210,
-    strapWidth: 20,
-
-    left: {
-      rotate: -22,
-      translateX: "-450%",
-      origin: "top right",
-    },
-
-    right: {
-      rotate: 22,
-      translateX: "350%",
-      origin: "top left",
-    },
-
     connectorHeight: 40,
   },
 
@@ -66,13 +66,13 @@ export const lanyardSizes = {
 
     left: {
       rotate: -24,
-      translateX: "-450%",
+      translateX: "-410%",
       origin: "top right",
     },
 
     right: {
       rotate: 24,
-      translateX: "350%",
+      translateX: "310%",
       origin: "top left",
     },
 
