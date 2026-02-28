@@ -36,57 +36,63 @@ function App() {
         </div>
 
         {/* RIGHT SIDE — CONTROLS */}
-        <div className="h-full overflow-y-auto bg-white p-6 shadow-xl">
+<div className="h-full bg-white p-6 shadow-xl flex flex-col gap-6 overflow-hidden">
 
-          <div className="space-y-6">
-            <LanyardSize
-              lanyardSize={lanyardSize}
-              setLanyardSize={setLanyardSize}
-            />
+  {/* SIZE + COLOR (no scroll) */}
+  <div className="space-y-6">
+    <LanyardSize
+      lanyardSize={lanyardSize}
+      setLanyardSize={setLanyardSize}
+    />
 
-            <LanyardColor
-              lanyardColor={lanyardColor}
-              setLanyardColor={setLanyardColor}
-            />
+    <LanyardColor
+      lanyardColor={lanyardColor}
+      setLanyardColor={setLanyardColor}
+    />
+  </div>
 
-            <h2 className="text-lg font-bold">Choose a card</h2>
-            <div className="grid grid-cols-3 gap-3">
-              {cards.map((card, i) => (
-                <div
-                  key={i}
-                  onClick={() => setSelectedCard(card)}
-                  className={`cursor-pointer border rounded p-2 transition text-center ${
-                    selectedCard?.title === card.title
-                      ? "border-blue-500 ring-2 ring-blue-400"
-                      : "border-gray-300 hover:border-blue-300"
-                  }`}
-                >
-                  <img
-                    src={card.src}
-                    alt={card.title}
-                    className="w-full rounded mb-1"
-                  />
-                  <p
-                    className={`text-xs ${
-                      selectedCard?.title === card.title
-                        ? "font-bold text-blue-600"
-                        : "font-medium text-gray-700"
-                    }`}
-                  >
-                    {card.title}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* HOOK SELECTION */}
-            <LanyardHooks
-              selectedHook={selectedHook}
-              setSelectedHook={setSelectedHook}
-            />
-
-          </div>
+  {/* CARDS SECTION (SCROLLABLE) */}
+  <div className="flex flex-col flex-1 min-h-0">
+    <h2 className="text-lg font-bold mb-2">Choose a card</h2>
+    <div className="grid grid-cols-3 gap-3 overflow-y-auto pr-2 flex-1">
+      {cards.map((card, i) => (
+        <div
+          key={i}
+          onClick={() => setSelectedCard(card)}
+          className={`cursor-pointer border rounded p-2 transition text-center ${
+            selectedCard?.title === card.title
+              ? "border-blue-500 ring-2 ring-blue-400"
+              : "border-gray-300 hover:border-blue-300"
+          }`}
+        >
+          <img
+            src={card.src}
+            alt={card.title}
+            className="w-full mb-1"
+          />
+          <p
+            className={`text-xs ${
+              selectedCard?.title === card.title
+                ? "font-bold text-blue-600"
+                : "font-medium text-gray-700"
+            }`}
+          >
+            {card.title}
+          </p>
         </div>
+      ))}
+    </div>
+  </div>
+
+  {/* HOOKS SECTION (SCROLLABLE) */}
+  <div className="flex flex-col flex-1 min-h-0">
+    <LanyardHooks
+      selectedHook={selectedHook}
+      setSelectedHook={setSelectedHook}
+    />
+  </div>
+
+</div>
 
       </div>
     </div>
