@@ -6,7 +6,7 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook }) 
   const currentSize = lanyardSizes[lanyardSize] || lanyardSizes["3/4"];
 
   // Hook width (proportional to strap)
-  const hookWidth = selectedHook ? currentSize.strapWidth * 2 : 0;
+  const hookWidth = selectedHook ? currentSize.strapWidth * 4 : 0;
 
   return (
     <div className="relative flex flex-col items-center">
@@ -19,16 +19,35 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook }) 
 
         {/* CONNECTOR (top front of straps) */}
         <div
+  className="absolute"  // removed bg-gray-400
+  style={{
+    width: `${currentSize.strapWidth}px`,
+    height: `${currentSize.connectorHeight}px`,
+    top: `${currentSize.connectorTop}px`,
+    left: "50%",
+    transform: "translateX(-50%)",
+    zIndex: 3,                  // in front of straps
+    backgroundColor: lanyardColor,  // ✅ dynamic color
+    borderRadius: "2px",           // optional: slightly rounded
+  }}
+/>
+
+
+
+
+        {/* <div
+
+          
           className="absolute bg-gray-400"
           style={{
             width: `${currentSize.strapWidth}px`,
             height: `${currentSize.connectorHeight}px`,
-            top: 240,
+            top: `${currentSize.connectorTop}px`,
             left: "50%",
             transform: "translateX(-50%)",
             zIndex: 3, // in front of straps
           }}
-        />
+        /> */}
 
         {/* LEFT STRAP */}
         <div
@@ -62,28 +81,27 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook }) 
 
         {/* HOOK (below connector, above card) */}
         {selectedHook && (
-          <img
-            src={selectedHook.src}
-            alt={selectedHook.name}
-            className="absolute z-2"
-            style={{
-              width: `${hookWidth}px`,
-              height: "auto",
-              top: `${currentSize.connectorHeight}px`, // just below connector
-              left: "50%",
-              transform: "translateX(-50%)",
-            }}
-          />
-        )}
+  <img
+    src={selectedHook.src}
+    alt={selectedHook.name}
+    className="absolute left-1/2 -translate-x-1/2"
+    style={{
+      width: `${hookWidth}px`,
+      top: `${currentSize.hookTop}px`,   //  MUST be hookTop
+      zIndex: 2,
+    }}
+  />
+)}
       </div>
 
       {/* CARD (below hook) */}
       <img
         src={selectedCard.src}
         alt={selectedCard.title}
-        className="relative rounded-lg shadow-xl mt-2"
+        className="relative mt-2"
         style={{
           width: `${currentSize.cardWidth}px`,
+          top: `${currentSize.cardTop}px`,
           zIndex: 1,
         }}
       />

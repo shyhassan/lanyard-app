@@ -19,7 +19,8 @@ function LanyardColor({ lanyardColor, setLanyardColor }) {
     <div className="space-y-3">
       <h2 className="text-lg font-bold">Choose a lanyard color</h2>
 
-      <div className="grid grid-cols-5 gap-4">
+      {/* <div className="grid grid-cols-5 gap-4"> */}
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
         {presetColors.map((color, index) => (
           <div
             key={index}

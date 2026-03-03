@@ -23,7 +23,8 @@ function LanyardHooks({ selectedHook, setSelectedHook }) {
   return (
     <div className="space-y-2 mt-4">
       <h2 className="text-lg font-bold">Choose a hook</h2>
-      <div className="grid grid-cols-4 gap-3">
+      {/* <div className="grid grid-cols-4 gap-3"> */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
         {hooksList.map((hook, index) => (
           <div
             key={index}

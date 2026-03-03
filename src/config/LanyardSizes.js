@@ -6,9 +6,9 @@ export const lanyardSizes = {
     connectorHeight: 50,
 
     // manual offsets for alignment
-    connectorTop: 0,
-    hookTop: 45,
-    cardTop: 105,
+    connectorTop: 310,
+    hookTop: 350,
+    cardTop: -40,
 
     left: { rotate: -20, translateX: "-278%", origin: "top right" },
     right: { rotate: 20, translateX: "178%", origin: "top left" },
@@ -18,11 +18,11 @@ export const lanyardSizes = {
     cardWidth: 400,
     strapWidth: 35,
     strapHeight: 240,
-    connectorHeight: 45,
+    connectorHeight: 50,
 
-    connectorTop: 0,
-    hookTop: 40,
-    cardTop: 95,
+    connectorTop: 279,
+    hookTop: 320,
+    cardTop: -35,
 
     left: { rotate: -22, translateX: "-310%", origin: "top right" },
     right: { rotate: 22, translateX: "210%", origin: "top left" },
@@ -34,9 +34,9 @@ export const lanyardSizes = {
     strapHeight: 210,
     connectorHeight: 40,
 
-    connectorTop: 0,
-    hookTop: 35,
-    cardTop: 80,
+    connectorTop: 242,
+    hookTop: 270,
+    cardTop: -40,
 
     left: { rotate: -22, translateX: "-270%", origin: "top right" },
     right: { rotate: 22, translateX: "170%", origin: "top left" },
@@ -48,9 +48,9 @@ export const lanyardSizes = {
     strapHeight: 180,
     connectorHeight: 35,
 
-    connectorTop: 0,
-    hookTop: 30,
-    cardTop: 70,
+    connectorTop: 200,
+    hookTop: 230,
+    cardTop: -30,
 
     left: { rotate: -24, translateX: "-410%", origin: "top right" },
     right: { rotate: 24, translateX: "310%", origin: "top left" },
@@ -58,16 +58,16 @@ export const lanyardSizes = {
 
   "1/2": {
     cardWidth: 260,
-    strapWidth: 5,
+    strapWidth: 15,
     strapHeight: 150,
     connectorHeight: 30,
 
-    connectorTop: 0,
-    hookTop: 25,
-    cardTop: 55,
+    connectorTop: 160,
+    hookTop: 190,
+    cardTop: -25,
 
-    left: { rotate: -25, translateX: "-100%", origin: "top right" },
-    right: { rotate: 25, translateX: "0%", origin: "top left" },
+    left: { rotate: -25, translateX: "-70px", origin: "top right" },
+    right: { rotate: 25, translateX: "55px", origin: "top left" },
   },
 };
 

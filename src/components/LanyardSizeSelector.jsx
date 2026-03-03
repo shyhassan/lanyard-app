@@ -5,7 +5,8 @@ function LanyardSizeSelector({ lanyardSize, setLanyardSize }) {
     <div className="space-y-3">
       <h2 className="text-lg font-bold">Choose lanyard size</h2>
 
-      <div className="grid grid-cols-5 gap-4">
+      {/* <div className="grid grid-cols-5 gap-4"> */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
         {sizes.map((size) => (
           <div
             key={size}

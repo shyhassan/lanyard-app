@@ -13,7 +13,7 @@ function App() {
   const [selectedHook, setSelectedHook] = useState(null);
 
   return (
-    <div className="h-screen w-full flex overflow-hidden bg-gray-100">
+    <div className="h-screen w-full flex overflow-hidden">
 
       <div className="grid grid-cols-1 md:grid-cols-2 w-full h-full">
 
@@ -91,6 +91,11 @@ function App() {
       setSelectedHook={setSelectedHook}
     />
   </div>
+
+
+
+
+
 
 </div>
 
