@@ -8,7 +8,7 @@ import ybdBlkNonSwivel from "../assets/hooks/ybdblk_non_swivel.png";
 import ybdnsCirNonSwivel from "../assets/hooks/ybdns_cir_non_swivel.png";
 import ybdnsCirBlkNonSwivel from "../assets/hooks/ybdns_cir_blk_non_swivel.png";
 
-const hooksList = [
+export const hooksList = [
   { name: "XBUC Detachable", src: xbucDetachable },
   { name: "XBUC White Detachable", src: xbucWhiteDetachable },
   { name: "YBD Swivel Pinhole", src: ybdSwivelPinhole },

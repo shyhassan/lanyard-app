@@ -9,103 +9,84 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook }) 
   const hookWidth = selectedHook ? currentSize.strapWidth * 4 : 0;
 
   return (
-    <div className="relative flex flex-col items-center">
+   <div
+  className="relative flex flex-col items-center"
+  style={{ transform: `scale(${currentSize.scale || 1})`, transformOrigin: "top center" }}
+>
+  {/* STRAPS CONTAINER */}
+  <div
+    className="relative flex justify-center items-start w-full"
+    style={{ height: `${(currentSize.strapHeight + currentSize.connectorHeight + (selectedHook ? currentSize.hookWidth : 0)) * (currentSize.scale || 1)}px` }}
+  >
+    {/* CONNECTOR */}
+    <div
+      className="absolute"
+      style={{
+        width: `${currentSize.strapWidth}px`,
+        height: `${currentSize.connectorHeight}px`,
+        top: `${currentSize.connectorTop + (currentSize.verticalOffset || 0)}px`,
+        left: "50%",
+        transform: "translateX(-50%)",
+        zIndex: 3,
+        backgroundColor: lanyardColor,
+      }}
+    />
+    
+    {/* LEFT & RIGHT STRAPS */}
+    <div
+      className="absolute"
+      style={{
+        width: `${currentSize.strapWidth}px`,
+        height: `${currentSize.strapHeight}px`,
+        backgroundColor: lanyardColor,
+        top: `${currentSize.connectorHeight + (currentSize.strapTopOffset || 0) + (currentSize.verticalOffset || 0)}px`,
+        left: "50%",
+        transform: `translateX(${currentSize.left.translateX}) rotate(${currentSize.left.rotate}deg)`,
+        transformOrigin: currentSize.left.origin,
+        zIndex: 1,
+      }}
+    />
+    <div
+      className="absolute"
+      style={{
+        width: `${currentSize.strapWidth}px`,
+        height: `${currentSize.strapHeight}px`,
+        backgroundColor: lanyardColor,
+        top: `${currentSize.connectorHeight + (currentSize.strapTopOffset || 0) + (currentSize.verticalOffset || 0)}px`,
+        left: "50%",
+        transform: `translateX(${currentSize.right.translateX}) rotate(${currentSize.right.rotate}deg)`,
+        transformOrigin: currentSize.right.origin,
+        zIndex: 1,
+      }}
+    />
 
-      {/* STRAPS CONTAINER */}
-      <div
-        className="relative flex justify-center items-start w-full"
-        style={{ height: `${currentSize.strapHeight + currentSize.connectorHeight + hookWidth}px` }}
-      >
-
-        {/* CONNECTOR (top front of straps) */}
-        <div
-  className="absolute"  // removed bg-gray-400
-  style={{
-    width: `${currentSize.strapWidth}px`,
-    height: `${currentSize.connectorHeight}px`,
-    top: `${currentSize.connectorTop}px`,
-    left: "50%",
-    transform: "translateX(-50%)",
-    zIndex: 3,                  // in front of straps
-    backgroundColor: lanyardColor,  // ✅ dynamic color
-    borderRadius: "2px",           // optional: slightly rounded
-  }}
-/>
-
-
-
-
-        {/* <div
-
-          
-          className="absolute bg-gray-400"
-          style={{
-            width: `${currentSize.strapWidth}px`,
-            height: `${currentSize.connectorHeight}px`,
-            top: `${currentSize.connectorTop}px`,
-            left: "50%",
-            transform: "translateX(-50%)",
-            zIndex: 3, // in front of straps
-          }}
-        /> */}
-
-        {/* LEFT STRAP */}
-        <div
-          className="absolute"
-          style={{
-            width: `${currentSize.strapWidth}px`,
-            height: `${currentSize.strapHeight}px`,
-            backgroundColor: lanyardColor,
-            top: `${currentSize.connectorHeight}px`, // start below connector
-            left: "50%",
-            transform: `translateX(${currentSize.left.translateX}) rotate(${currentSize.left.rotate}deg)`,
-            transformOrigin: currentSize.left.origin,
-            zIndex: 1,
-          }}
-        />
-
-        {/* RIGHT STRAP */}
-        <div
-          className="absolute"
-          style={{
-            width: `${currentSize.strapWidth}px`,
-            height: `${currentSize.strapHeight}px`,
-            backgroundColor: lanyardColor,
-            top: `${currentSize.connectorHeight}px`, // start below connector
-            left: "50%",
-            transform: `translateX(${currentSize.right.translateX}) rotate(${currentSize.right.rotate}deg)`,
-            transformOrigin: currentSize.right.origin,
-            zIndex: 1,
-          }}
-        />
-
-        {/* HOOK (below connector, above card) */}
-        {selectedHook && (
-  <img
-    src={selectedHook.src}
-    alt={selectedHook.name}
-    className="absolute left-1/2 -translate-x-1/2"
-    style={{
-      width: `${hookWidth}px`,
-      top: `${currentSize.hookTop}px`,   //  MUST be hookTop
-      zIndex: 2,
-    }}
-  />
-)}
-      </div>
-
-      {/* CARD (below hook) */}
+    {/* HOOK */}
+    {selectedHook && (
       <img
-        src={selectedCard.src}
-        alt={selectedCard.title}
-        className="relative mt-2"
+        src={selectedHook.src}
+        alt={selectedHook.name}
+        className="absolute left-1/2 -translate-x-1/2"
         style={{
-          width: `${currentSize.cardWidth}px`,
-          top: `${currentSize.cardTop}px`,
-          zIndex: 1,
+          width: `${currentSize.hookWidth}px`,
+          top: `${currentSize.hookTop + (currentSize.verticalOffset || 0)}px`,
+          zIndex: 2,
         }}
       />
-    </div>
+    )}
+  </div>
+
+  {/* CARD */}
+  <img
+    src={selectedCard.src}
+    alt={selectedCard.title}
+    className="relative mt-2"
+    style={{
+      width: `${currentSize.cardWidth}px`,
+      top: `${currentSize.cardTop + (currentSize.verticalOffset || 0)}px`,
+      zIndex: 1,
+    }}
+  />
+</div>
   );
 }
 
