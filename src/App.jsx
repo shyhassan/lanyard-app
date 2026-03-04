@@ -45,6 +45,7 @@ function App() {
     <div className="md:col-span-5 h-screen overflow-y-auto bg-white p-8 shadow-xl">
       
       <div className="space-y-8">
+        <h1 className="text-3xl font-extrabold tracking-tight">CUSTOMIZE YOUR LANYARD</h1>
         <LanyardSize
           lanyardSize={lanyardSize}
           setLanyardSize={setLanyardSize}
@@ -57,7 +58,7 @@ function App() {
 
         {/* Cards */}
         <div>
-          <h2 className="text-lg font-bold mb-3">Choose a card</h2>
+          <h2 className="text-lg font-bold mb-3">CARDS</h2>
           <div className="grid grid-cols-3 gap-4">
             {cards.map((card, i) => (
               <div
