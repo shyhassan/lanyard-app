@@ -1,11 +1,13 @@
+import { useRef, useEffect, useState } from "react";
 import { lanyardSizes } from "../config/LanyardSizes";
 
 function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook }) {
   if (!selectedCard) return null;
 
-  const currentSize = lanyardSizes[lanyardSize] || lanyardSizes["3/4"];
-  const hookWidth = selectedHook ? currentSize.strapWidth * 4 : 0;
+  const currentSize = lanyardSizes[lanyardSize] || lanyardSizes["1"];
 
+  const dynamicCardTop = currentSize.hookTop + (selectedHook?.hookHeight || 120) - 730;
+  
   return (
     <div
       className="relative flex flex-col items-center"
@@ -83,10 +85,11 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook }) 
       <img
         src={selectedCard.src}
         alt={selectedCard.title}
-        className="relative mt-2"
+        className="relative"
         style={{
           width: `${currentSize.cardWidth}px`,
-          top: `${currentSize.cardTop + (currentSize.verticalOffset || 0)}px`,
+          // top: `${currentSize.cardTop + (currentSize.verticalOffset || 0)}px`,
+          top: `${dynamicCardTop}px`,
           zIndex: 1,
         }}
       />
