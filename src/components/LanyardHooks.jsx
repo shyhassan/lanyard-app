@@ -1,6 +1,4 @@
 import React from "react";
-
-// Existing hooks 
 import xbucDetachable from "../assets/hooks/xbuc_detachable.png";
 import xbucWhiteDetachable from "../assets/hooks/xbuc_white_detachable.png";
 import ybdSwivelPinhole from "../assets/hooks/ybd_swivel_pinhole.png";
@@ -9,14 +7,12 @@ import ybdBlkSwivel from "../assets/hooks/ybdblk_swivel.png";
 import ybdBlkNonSwivel from "../assets/hooks/ybdblk_non_swivel.png";
 import ybdnsCirNonSwivel from "../assets/hooks/ybdns_cir_non_swivel.png";
 import ybdnsCirBlkNonSwivel from "../assets/hooks/ybdns_cir_blk_non_swivel.png";
-
-// New hooks 
-// import cylindricalBreakaway from "../assets/hooks/cylindrical_breakaway.png";
+import cylindricalBreakaway from "../assets/hooks/cylindrical_breakaway.png";
 import pvcscPvcSnapclip from "../assets/hooks/pvcsc_pvc_snapclip.png";
-// import xbaBreakaway2 from "../assets/hooks/xba_breakaway_2.png";
-// import xba2pBreakaway2p from "../assets/hooks/xba2p_breakaway_2p.png";
-// import xbasewBreakawayClip from "../assets/hooks/xbasew_breakaway_clip.png";
-// import xbasewWhiteBreakawayClip from "../assets/hooks/xbasew_white_breakaway_clip.png";
+import xbaBreakaway2 from "../assets/hooks/xba_breakaway_2.png";
+import xba2pBreakaway2p from "../assets/hooks/xba2p_breakaway_2p.png";
+import xbasewBreakawayClip from "../assets/hooks/xbasew_breakaway_clip.png";
+import xbasewWhiteBreakawayClip from "../assets/hooks/xbasew_white_breakaway_clip.png";
 import ybdbklNonSwivel from "../assets/hooks/ybdblk_non_swivel.png";
 import ybdbklSwivel from "../assets/hooks/ybdblk_swivel.png";
 import ybdnsaDRBlack from "../assets/hooks/ybdnsa_d_r_black.png";
@@ -51,69 +47,73 @@ import yoring from "../assets/hooks/yoring.png";
 import ysrKeyRing from "../assets/hooks/ysr_key_ring.png";
 import ysrblkKeyRingBlack from "../assets/hooks/ysrblk_key_ring_black.png";
 
-// ➕ Add future hook imports here following the same pattern
-
 export const hooksList = [
-  // ── Existing ───────────────────────────────────────────────────
-  { name: "XBUC Detachable", src: xbucDetachable, hookHeight: 120 },
-  { name: "XBUC White Detachable", src: xbucWhiteDetachable, hookHeight: 120 },
-  { name: "YBD Swivel Pinhole", src: ybdSwivelPinhole, hookHeight: 120 },
-  { name: "YBD Swivel", src: ybdSwivel, hookHeight: 120 },
-  { name: "YBD Black Swivel", src: ybdBlkSwivel, hookHeight: 120 },
-  { name: "YBD Black Non Swivel", src: ybdBlkNonSwivel, hookHeight: 120 },
-  { name: "YBD Non Swivel Cir", src: ybdnsCirNonSwivel, hookHeight: 120 },
-  { name: "YBD Non Swivel Cir Black", src: ybdnsCirBlkNonSwivel, hookHeight: 120 },
-
-  // ── New ────────────────────────────────────────────────────────
-  // { name: "Cylindrical Breakaway", src: cylindricalBreakaway },
-  { name: "PVC Snap Clip", src: pvcscPvcSnapclip, hookHeight: 120 },
-  // { name: "XBA Breakaway 2", src: xbaBreakaway2 },
-  // { name: "XBA2P Breakaway 2P", src: xba2pBreakaway2p },
-  // { name: "XBASEW Breakaway Clip", src: xbasewBreakawayClip },
-  // { name: "XBASEW White Breakaway Clip", src: xbasewWhiteBreakawayClip },
-  { name: "YBDBKL Non Swivel", src: ybdbklNonSwivel, hookHeight: 120 },
-  { name: "YBDBKL Swivel", src: ybdbklSwivel, hookHeight: 120 },
-  { name: "YBDNSA D/R Black", src: ybdnsaDRBlack, hookHeight: 120 },
-  { name: "YBDNSA D/R Silver", src: ybdnsaDRSilver, hookHeight: 120 },
-  { name: "Bulldog Black Non Swivel", src: ybdnsnaNonSwivelBulldog, hookHeight: 120 },
-  { name: "Bulldog Nic Non Swivel", src: ybdnsnaNicNonSwivelBulldog, hookHeight: 120 },
-  { name: "Bulldog Keyring", src: ybdscWithKeyringBulldog, hookHeight: 120 },
-  { name: "Bulldog Keyring Snapclip", src: ybdscWithKeyringBulldogSnapclip, hookHeight: 120 },
-  { name: "YCELL Large", src: ycellLarge, hookHeight: 120 },
-  { name: "YCELL Small", src: ycellSmall, hookHeight: 120 },
-  { name: "Deluxe Lobster", src: ydsDeluxeLobster, hookHeight: 120 },
-  { name: "Deluxe Lobster Black", src: ydsblkDeluxeLobsterBlack, hookHeight: 120 },
-  { name: "J Hook", src: yjhJHook, hookHeight: 120 },
-  { name: "J Hook Pinhole", src: yjhPinholesJHookPinhole, hookHeight: 120 },
-  { name: "J Hook Black", src: yjhblkJHookBlack, hookHeight: 120 },
-  { name: "J Hook Eagle Claw", src: yjhecJHookEagleClaw, hookHeight: 120 },
-  { name: "J Hook Euro", src: yjheuJHookEuro, hookHeight: 120 },
-  { name: "J Hook Non Swivel", src: yjhnsJHookNonSwivel, hookHeight: 120 },
-  { name: "J Hook Non Swivel Gun Metal", src: yjhnsGunJHookNonSwivelGunMetal, hookHeight: 120 },
-  { name: "J Hook Non Swivel Black", src: yjhnsblkJHookNonSwivelBlack, hookHeight: 120 },
-  { name: "Snaphook Plastic", src: yjhplaSnaphookPlastic, hookHeight: 120 },
-  { name: "J Hook Detachable Buckle", src: ymdaJHookDetachableBuckle, hookHeight: 120 },
-  { name: "Detachable Buckle", src: ymdbDetachableBuckle, hookHeight: 120 },
-  { name: "Split Ring Detachable Buckle", src: ymdbblkSplitRingDetachableBuckle, hookHeight: 120 },
-  { name: "Bulldog Detachable Buckle", src: ymddcBulldogDetachableBuckle, hookHeight: 120 },
-  { name: "ID Holder Detachable Buckle", src: ymddIdHolderDetachableBuckle, hookHeight: 120 },
-  { name: "Holder X Detachable Buckle", src: ymdeHolderXDetachableBuckle, hookHeight: 120 },
-  { name: "Black Metal Hook Detachable", src: ymdjBlckBlackMetalHookDetachable, hookHeight: 120 },
-  { name: "Gun Metal Hook Detachable", src: ymdjGunm1GunMetalHookDetachable, hookHeight: 120 },
-  { name: "Metal Hook Detachable", src: ymdjNcklMetalHookDetachable, hookHeight: 120 },
-  { name: "O Ring", src: yoring },
-  { name: "Key Ring", src: ysrKeyRing },
-  { name: "Key Ring Black", src: ysrblkKeyRingBlack },
-
-  // ➕ Add future hook entries here
+  { name: "XBUC Detachable", src: xbucDetachable, hookHeight: 59 },
+  { name: "XBUC White Detachable", src: xbucWhiteDetachable, hookHeight: 60 },
+  { name: "YBD Swivel Pinhole", src: ybdSwivelPinhole, hookHeight: 64 },
+  { name: "YBD Swivel", src: ybdSwivel, hookHeight: 65 },
+  { name: "YBD Black Swivel", src: ybdBlkSwivel, hookHeight: 64 },
+  { name: "YBD Black Non Swivel", src: ybdBlkNonSwivel, hookHeight: 53, displayWidth: 270, displayTop: 710 },
+  { name: "YBD Non Swivel Cir", src: ybdnsCirNonSwivel, hookHeight: 57 },
+  { name: "YBD Non Swivel Cir Black", src: ybdnsCirBlkNonSwivel, hookHeight: 57 },
+  // { name: "Cylindrical Breakaway", src: cylindricalBreakaway, hookHeight: 64 },
+  { name: "PVC Snap Clip", src: pvcscPvcSnapclip, hookHeight: 64 },
+  { name: "YBDBKL Non Swivel", src: ybdbklNonSwivel, hookHeight: 53 },
+  { name: "YBDBKL Swivel", src: ybdbklSwivel, hookHeight: 64 },
+  { name: "YBDNSA D/R Black", src: ybdnsaDRBlack, hookHeight: 47 },
+  { name: "YBDNSA D/R Silver", src: ybdnsaDRSilver, hookHeight: 48 },
+  { name: "Bulldog Black Non Swivel", src: ybdnsnaNonSwivelBulldog, hookHeight: 50 },
+  { name: "Bulldog Nic Non Swivel", src: ybdnsnaNicNonSwivelBulldog, hookHeight: 53 },
+  { name: "Bulldog Keyring", src: ybdscWithKeyringBulldog, hookHeight: 65 },
+  { name: "Bulldog Keyring Snapclip", src: ybdscWithKeyringBulldogSnapclip, hookHeight: 64 },
+  { name: "YCELL Large", src: ycellLarge, hookHeight: 79 },
+  { name: "YCELL Small", src: ycellSmall, hookHeight: 79 },
+  { name: "Deluxe Lobster", src: ydsDeluxeLobster, hookHeight: 51 },
+  { name: "Deluxe Lobster Black", src: ydsblkDeluxeLobsterBlack, hookHeight: 50 },
+  { name: "J Hook", src: yjhJHook, hookHeight: 68 },
+  { name: "J Hook Pinhole", src: yjhPinholesJHookPinhole, hookHeight: 66 },
+  { name: "J Hook Black", src: yjhblkJHookBlack, hookHeight: 70 },
+  { name: "J Hook Eagle Claw", src: yjhecJHookEagleClaw, hookHeight: 54 },
+  { name: "J Hook Euro", src: yjheuJHookEuro, hookHeight: 48 },
+  { name: "J Hook Non Swivel", src: yjhnsJHookNonSwivel, hookHeight: 65 },
+  { name: "J Hook Non Swivel Gun Metal", src: yjhnsGunJHookNonSwivelGunMetal, hookHeight: 53 },
+  { name: "J Hook Non Swivel Black", src: yjhnsblkJHookNonSwivelBlack, hookHeight: 57 },
+  { name: "Snaphook Plastic", src: yjhplaSnaphookPlastic, hookHeight: 51 },
+  { name: "J Hook Detachable Buckle", src: ymdaJHookDetachableBuckle, hookHeight: 77 },
+  { name: "Detachable Buckle", src: ymdbDetachableBuckle, hookHeight: 77 },
+  { name: "Split Ring Detachable Buckle", src: ymdbblkSplitRingDetachableBuckle, hookHeight: 77 },
+  { name: "Bulldog Detachable Buckle", src: ymddcBulldogDetachableBuckle, hookHeight: 77 },
+  { name: "ID Holder Detachable Buckle", src: ymddIdHolderDetachableBuckle, hookHeight: 75 },
+  { name: "Holder X Detachable Buckle", src: ymdeHolderXDetachableBuckle, hookHeight: 74 },
+  { name: "Black Metal Hook Detachable", src: ymdjBlckBlackMetalHookDetachable, hookHeight: 80 },
+  { name: "Gun Metal Hook Detachable", src: ymdjGunm1GunMetalHookDetachable, hookHeight: 80 },
+  { name: "Metal Hook Detachable", src: ymdjNcklMetalHookDetachable, hookHeight: 78 },
+  { name: "O Ring", src: yoring, hookHeight: 57 },
+  { name: "Key Ring", src: ysrKeyRing, hookHeight: 39 },
+  { name: "Key Ring Black", src: ysrblkKeyRingBlack, hookHeight: 39 },
 ];
 
 function LanyardHooks({ selectedHook, setSelectedHook }) {
   return (
-    <div className="space-y-2 mt-4">                                                                                                                              
-    
-      <h2 className="text-lg font-bold">HOOKS</h2>
+    <div className="space-y-2 mt-4">
+      <h2 className="text-3xl font-bold">HOOKS</h2>
       <div className="grid grid-cols-5 gap-3">
+  {hooksList.map((hook, index) => (
+    <div
+      key={index}
+      onClick={() => setSelectedHook(hook)}
+      className={`cursor-pointer border rounded p-2 transition text-center ${
+        selectedHook?.name === hook.name
+          ? "border-blue-500 ring-2 ring-blue-400"
+          : "border-gray-300 hover:border-blue-300"
+      }`}
+    >
+      <img src={hook.src} alt={hook.name} className="w-full rounded mb-1" />
+      <p className="text-sm font-medium leading-tight">{hook.name}</p>
+    </div>
+  ))}
+</div>
+      {/* <div className="grid grid-cols-5 gap-3">
         {hooksList.map((hook, index) => (
           <div
             key={index}
@@ -128,7 +128,7 @@ function LanyardHooks({ selectedHook, setSelectedHook }) {
             <p className="text-xs">{hook.name}</p>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }

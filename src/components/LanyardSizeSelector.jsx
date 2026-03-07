@@ -3,7 +3,7 @@ function LanyardSizeSelector({ lanyardSize, setLanyardSize }) {
 
   return (
     <div className="space-y-3">
-      <h2 className="text-lg font-bold">WIDTHS</h2>
+      <h2 className="text-3xl font-bold">WIDTHS</h2>
 
 
       <div className="grid grid-cols-5 gap-3">
@@ -17,7 +17,7 @@ function LanyardSizeSelector({ lanyardSize, setLanyardSize }) {
           : "border-gray-300 hover:scale-105"
       }`}
     >
-      <span className="font-semibold text-sm">{size}"</span>
+      <span className="font-semibold text-xl">{size}"</span>
     </div>
   ))}
 </div>

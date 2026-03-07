@@ -1,13 +1,14 @@
-import { useRef, useEffect, useState } from "react";
 import { lanyardSizes } from "../config/LanyardSizes";
 
-function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook }) {
+function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, lanyardText, fontFamily, fontSize, textColor }) {
   if (!selectedCard) return null;
 
   const currentSize = lanyardSizes[lanyardSize] || lanyardSizes["1"];
+  const hookHeight = selectedHook?.hookHeight || 64;
+  const dynamicCardTop = currentSize.cardTop + (hookHeight - 64);
+  const hookDisplayWidth = selectedHook?.displayWidth || currentSize.hookWidth;
+  const hookDisplayTop = selectedHook?.displayTop || (currentSize.hookTop + (currentSize.verticalOffset || 0));
 
-  const dynamicCardTop = currentSize.hookTop + (selectedHook?.hookHeight || 120) - 730;
-  
   return (
     <div
       className="relative flex flex-col items-center"
@@ -33,13 +34,12 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook }) 
           }}
         />
 
-        {/* LEFT STRAP */}
+        {/* LEFT STRAP + TEXT */}
         <div
-          className="absolute"
+          className="absolute overflow-hidden flex items-center justify-center"
           style={{
             width: `${currentSize.strapWidth}px`,
             height: `${currentSize.strapHeight}px`,
-            backgroundColor: lanyardColor,
             background: `linear-gradient(to right, rgba(0,0,0,0.18) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.18) 100%), ${lanyardColor}`,
             top: `${currentSize.connectorHeight + (currentSize.strapTopOffset || 0) + (currentSize.verticalOffset || 0)}px`,
             left: "50%",
@@ -47,15 +47,31 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook }) 
             transformOrigin: currentSize.left.origin,
             zIndex: 1,
           }}
-        />
+        >
+          {lanyardText && (
+            <span
+              style={{
+                fontFamily,
+                fontSize: `${fontSize}px`,
+                color: textColor,
+                whiteSpace: "nowrap",
+                transform: "rotate(90deg)",
+                display: "inline-block",
+                letterSpacing: "0.15em",
+                userSelect: "none",
+              }}
+            >
+              {lanyardText}
+            </span>
+          )}
+        </div>
 
-        {/* RIGHT STRAP */}
+        {/* RIGHT STRAP + TEXT */}
         <div
-          className="absolute"
+          className="absolute overflow-hidden flex items-center justify-center"
           style={{
             width: `${currentSize.strapWidth}px`,
             height: `${currentSize.strapHeight}px`,
-            backgroundColor: lanyardColor,
             background: `linear-gradient(to right, rgba(0,0,0,0.18) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.18) 100%), ${lanyardColor}`,
             top: `${currentSize.connectorHeight + (currentSize.strapTopOffset || 0) + (currentSize.verticalOffset || 0)}px`,
             left: "50%",
@@ -63,7 +79,24 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook }) 
             transformOrigin: currentSize.right.origin,
             zIndex: 1,
           }}
-        />
+        >
+          {lanyardText && (
+            <span
+              style={{
+                fontFamily,
+                fontSize: `${fontSize}px`,
+                color: textColor,
+                whiteSpace: "nowrap",
+                transform: "rotate(-90deg)",
+                display: "inline-block",
+                letterSpacing: "0.15em",
+                userSelect: "none",
+              }}
+            >
+              {lanyardText}
+            </span>
+          )}
+        </div>
 
         {/* HOOK */}
         {selectedHook && (
@@ -72,8 +105,8 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook }) 
             alt={selectedHook.name}
             className="absolute left-1/2 -translate-x-1/2"
             style={{
-              width: `${currentSize.hookWidth}px`,
-              top: `${currentSize.hookTop + (currentSize.verticalOffset || 0)}px`,
+              width: `${hookDisplayWidth}px`,
+              top: `${hookDisplayTop}px`,
               zIndex: 2,
               filter: "drop-shadow(1px 2px 3px rgba(0,0,0,0.35))",
             }}
@@ -88,7 +121,6 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook }) 
         className="relative"
         style={{
           width: `${currentSize.cardWidth}px`,
-          // top: `${currentSize.cardTop + (currentSize.verticalOffset || 0)}px`,
           top: `${dynamicCardTop}px`,
           zIndex: 1,
         }}

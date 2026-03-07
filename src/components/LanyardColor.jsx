@@ -22,7 +22,7 @@ function LanyardColor({ lanyardColor, setLanyardColor }) {
 
   return (
     <div className="space-y-3">
-      <h2 className="text-lg font-bold">COLOR</h2>
+      <h2 className="text-3xl font-bold">COLORS</h2>
 
       {/* Search Input */}
       <input
@@ -30,7 +30,7 @@ function LanyardColor({ lanyardColor, setLanyardColor }) {
         placeholder="Search color..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
       />
 
       <div className="grid grid-cols-5 gap-3">
@@ -54,7 +54,7 @@ function LanyardColor({ lanyardColor, setLanyardColor }) {
         {search === "" && (
           <div
             onClick={() => setShowPicker(!showPicker)}
-            className="aspect-square w-full rounded-lg border-2 border-dashed border-gray-400 flex items-center justify-center cursor-pointer hover:scale-105 transition text-xl"
+            className="aspect-square w-full rounded-lg border-2 border-dashed border-gray-400 flex items-center justify-center cursor-pointer hover:scale-105 transition text-3xl"
           >
             +
           </div>
