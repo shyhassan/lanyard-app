@@ -1,7 +1,7 @@
 export const lanyardSizes = {
 
   "1": {
-    verticalOffset: -50,
+    verticalOffset: -220,
     scale: 1,
     hookWidth: 230,
     hookHeight: 100,
@@ -12,13 +12,13 @@ export const lanyardSizes = {
     connectorHeight: 50,
     connectorTop: 730,
     hookTop: 770,
-    cardTop: 90,
+    cardTop: -80,
     left: { rotate: -20, translateX: "-200px", origin: "top right" },
     right: { rotate: 20, translateX: "142px", origin: "top left" },
   },
 
   "7/8": {
-    verticalOffset: -50,
+    verticalOffset: -200,
     scale: 1,
     hookWidth: 230,
     hookHeight: 120,
@@ -29,13 +29,13 @@ export const lanyardSizes = {
     connectorHeight: 60,
     connectorTop: 720,
     hookTop: 770,
-    cardTop: 88,
+    cardTop: -65,
     left: { rotate: -20, translateX: "-198px", origin: "top right" },
     right: { rotate: 20, translateX: "140px", origin: "top left" },
   },
 
   "3/4": {
-    verticalOffset: -50,
+    verticalOffset: -200,
     scale: 1,
     hookWidth: 230,
     hookHeight: 120,
@@ -46,13 +46,13 @@ export const lanyardSizes = {
     connectorHeight: 50,
     connectorTop: 718,
     hookTop: 760,
-    cardTop: 85,
+    cardTop: -65,
     left: { rotate: -20, translateX: "-195px", origin: "top right" },
     right: { rotate: 20, translateX: "143px", origin: "top left" },
   },
 
   "5/8": {
-    verticalOffset: -50,
+    verticalOffset: -200,
     scale: 1,
     hookWidth: 230,
     hookHeight: 120,
@@ -63,13 +63,13 @@ export const lanyardSizes = {
     connectorHeight: 50,
     connectorTop: 716,
     hookTop: 758,
-    cardTop: 85,
+    cardTop: -70,
     left: { rotate: -20, translateX: "-193px", origin: "top right" },
     right: { rotate: 20, translateX: "146px", origin: "top left" },
   },
 
   "1/2": {
-    verticalOffset: -50,
+    verticalOffset: -200,
     scale: 1,
     hookWidth: 230,
     hookHeight: 120,
@@ -80,7 +80,7 @@ export const lanyardSizes = {
     connectorHeight: 50,
     connectorTop: 714,
     hookTop: 756,
-    cardTop: 85,
+    cardTop: -70,
     left: { rotate: -20, translateX: "-189px", origin: "top right" },
     right: { rotate: 20, translateX: "149px", origin: "top left" },
   },

@@ -30,7 +30,7 @@ function LanyardColor({ lanyardColor, setLanyardColor }) {
         placeholder="Search color..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="w-full border border-gray-300 rounded-lg px-4 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
       />
 
       <div className="grid grid-cols-5 gap-3">

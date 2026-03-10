@@ -7,12 +7,7 @@ import ybdBlkSwivel from "../assets/hooks/ybdblk_swivel.png";
 import ybdBlkNonSwivel from "../assets/hooks/ybdblk_non_swivel.png";
 import ybdnsCirNonSwivel from "../assets/hooks/ybdns_cir_non_swivel.png";
 import ybdnsCirBlkNonSwivel from "../assets/hooks/ybdns_cir_blk_non_swivel.png";
-import cylindricalBreakaway from "../assets/hooks/cylindrical_breakaway.png";
 import pvcscPvcSnapclip from "../assets/hooks/pvcsc_pvc_snapclip.png";
-import xbaBreakaway2 from "../assets/hooks/xba_breakaway_2.png";
-import xba2pBreakaway2p from "../assets/hooks/xba2p_breakaway_2p.png";
-import xbasewBreakawayClip from "../assets/hooks/xbasew_breakaway_clip.png";
-import xbasewWhiteBreakawayClip from "../assets/hooks/xbasew_white_breakaway_clip.png";
 import ybdbklNonSwivel from "../assets/hooks/ybdblk_non_swivel.png";
 import ybdbklSwivel from "../assets/hooks/ybdblk_swivel.png";
 import ybdnsaDRBlack from "../assets/hooks/ybdnsa_d_r_black.png";
@@ -54,10 +49,9 @@ export const hooksList = [
   { name: "YBD Swivel", src: ybdSwivel, hookHeight: 65 },
   { name: "YBD Black Swivel", src: ybdBlkSwivel, hookHeight: 64 },
   { name: "YBD Black Non Swivel", src: ybdBlkNonSwivel, hookHeight: 53, displayWidth: 270, displayTop: 710 },
-  { name: "YBD Non Swivel Cir", src: ybdnsCirNonSwivel, hookHeight: 57 },
-  { name: "YBD Non Swivel Cir Black", src: ybdnsCirBlkNonSwivel, hookHeight: 57 },
-  // { name: "Cylindrical Breakaway", src: cylindricalBreakaway, hookHeight: 64 },
-  { name: "PVC Snap Clip", src: pvcscPvcSnapclip, hookHeight: 64 },
+  { name: "YBD Non Swivel Cir", src: ybdnsCirNonSwivel, hookHeight: 57, displayWidth: 280 },
+  { name: "YBD Non Swivel Cir Black", src: ybdnsCirBlkNonSwivel, hookHeight: 57, displayWidth: 280 },
+  { name: "PVC Snap Clip", src: pvcscPvcSnapclip, hookHeight: 64, displayWidth: 280 },
   { name: "YBDBKL Non Swivel", src: ybdbklNonSwivel, hookHeight: 53 },
   { name: "YBDBKL Swivel", src: ybdbklSwivel, hookHeight: 64 },
   { name: "YBDNSA D/R Black", src: ybdnsaDRBlack, hookHeight: 47 },
@@ -97,38 +91,22 @@ function LanyardHooks({ selectedHook, setSelectedHook }) {
   return (
     <div className="space-y-2 mt-4">
       <h2 className="text-3xl font-bold">HOOKS</h2>
-      <div className="grid grid-cols-5 gap-3">
-  {hooksList.map((hook, index) => (
-    <div
-      key={index}
-      onClick={() => setSelectedHook(hook)}
-      className={`cursor-pointer border rounded p-2 transition text-center ${
-        selectedHook?.name === hook.name
-          ? "border-blue-500 ring-2 ring-blue-400"
-          : "border-gray-300 hover:border-blue-300"
-      }`}
-    >
-      <img src={hook.src} alt={hook.name} className="w-full rounded mb-1" />
-      <p className="text-sm font-medium leading-tight">{hook.name}</p>
-    </div>
-  ))}
-</div>
-      {/* <div className="grid grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {hooksList.map((hook, index) => (
           <div
             key={index}
             onClick={() => setSelectedHook(hook)}
-            className={`cursor-pointer border rounded p-1 transition text-center ${
+            className={`cursor-pointer border rounded p-2 transition text-center ${
               selectedHook?.name === hook.name
                 ? "border-blue-500 ring-2 ring-blue-400"
                 : "border-gray-300 hover:border-blue-300"
             }`}
           >
             <img src={hook.src} alt={hook.name} className="w-full rounded mb-1" />
-            <p className="text-xs">{hook.name}</p>
+            <p className="text-xs sm:text-sm font-medium break-words leading-tight">{hook.name}</p>
           </div>
         ))}
-      </div> */}
+      </div>
     </div>
   );
 }

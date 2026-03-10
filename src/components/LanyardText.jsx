@@ -23,7 +23,7 @@ function LanyardText({ lanyardText, setLanyardText, fontFamily, setFontFamily, f
           placeholder="e.g. YOUR COMPANY NAME"
           value={lanyardText}
           onChange={(e) => setLanyardText(e.target.value)}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-lg focus:outline-none focus:ring-2 focus:ring-blue-400 mt-1"
+          className="w-full border border-gray-300 rounded-lg px-4 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-blue-400 mt-1"
         />
       </div>
 
@@ -35,7 +35,7 @@ function LanyardText({ lanyardText, setLanyardText, fontFamily, setFontFamily, f
             <div
               key={font.value}
               onClick={() => setFontFamily(font.value)}
-              className={`cursor-pointer border rounded p-2 transition text-center text-3xl ${
+              className={`cursor-pointer border rounded p-2 transition text-center text-xl ${
                 fontFamily === font.value
                   ? "border-blue-500 ring-2 ring-blue-400 bg-blue-50"
                   : "border-gray-300 hover:border-blue-300"
@@ -61,7 +61,7 @@ function LanyardText({ lanyardText, setLanyardText, fontFamily, setFontFamily, f
         />
         <div className="flex justify-between text-xs text-gray-400">
           <span>8px</span>
-          <span>32px</span>
+          <span>100px</span>
         </div>
       </div>
 

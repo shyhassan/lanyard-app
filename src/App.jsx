@@ -22,23 +22,25 @@ function App() {
     <div className="h-screen w-full overflow-hidden">
       <div className="grid grid-cols-1 md:grid-cols-12 h-full">
 
-        {/* LEFT — PREVIEW */}
-        <div className="md:col-span-7 sticky top-0 h-screen flex items-center justify-center bg-gray-50 p-8">
-          <LanyardCard
-            selectedCard={selectedCard}
-            lanyardSize={lanyardSize}
-            lanyardColor={lanyardColor}
-            selectedHook={selectedHook}
-            lanyardText={lanyardText}
-            fontFamily={fontFamily}
-            fontSize={fontSize}
-            textColor={textColor}
-          />
-        </div>
+{/* LEFT — PREVIEW */}
+<div className="md:col-span-7 h-screen overflow-y-auto flex items-start justify-center bg-gray-50 p-8 pt-12">
+  <div style={{ transform: "scale(1.3)", transformOrigin: "top center" }}>
+    <LanyardCard
+      selectedCard={selectedCard}
+      lanyardSize={lanyardSize}
+      lanyardColor={lanyardColor}
+      selectedHook={selectedHook}
+      lanyardText={lanyardText}
+      fontFamily={fontFamily}
+      fontSize={fontSize}
+      textColor={textColor}
+    />
+  </div>
+</div>
 
         {/* RIGHT — OPTIONS */}
-        <div className="md:col-span-5 h-screen overflow-y-auto bg-white p-8 shadow-xl text-base">
-          <div className="space-y-8">
+<div className="md:col-span-5 h-screen overflow-y-auto bg-white shadow-xl">
+  <div className="space-y-8 p-8" style={{ transform: "scale(1.0)", transformOrigin: "top" }}>
             <h1 className="text-5xl font-extrabold tracking-tight">CUSTOMIZE YOUR LANYARD</h1>
 
             <LanyardSize
@@ -66,14 +68,32 @@ function App() {
            {/* Cards */}
 <div>
   <h2 className="text-3xl font-bold mb-3">CARDS</h2>
-  <div className="grid grid-cols-4 gap-3">
+<div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+  {cards.map((card, i) => (
+    <div
+      key={i}
+      onClick={() => setSelectedCard(card)}
+      className={`cursor-pointer border rounded p-2 transition text-center ${
+        selectedCard?.title === card.title
+          ? "border-blue-500 ring-2 ring-blue-400"
+          : "border-gray-300 hover:border-blue-300"
+      }`}
+    >
+      <img src={card.src} alt={card.title} className="w-full mb-1" />
+      <p className="text-xs sm:text-sm font-medium break-words leading-tight">{card.title}</p>
+    </div>
+  ))}
+</div>
+
+  {/* <div className="grid grid-cols-4 gap-3">
     {cards.map((card, i) => (
       <div
         key={i}
         onClick={() => setSelectedCard(card)}
         className={`cursor-pointer border rounded p-2 transition text-center ${
           selectedCard?.title === card.title
-            ? "border-blue-500 ring-2 ring-blue-400"
+         
+          ? "border-blue-500 ring-2 ring-blue-400"
             : "border-gray-300 hover:border-blue-300"
         }`}
       >
@@ -81,7 +101,7 @@ function App() {
         <p className="text-sm font-medium leading-tight">{card.title}</p>
       </div>
     ))}
-  </div>
+  </div> */}
 </div>
             {/* <div>
               <h2 className="text-3xl font-bold mb-3">CARDS</h2>
