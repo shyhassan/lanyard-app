@@ -2,6 +2,10 @@ export const lanyardSizes = {
 
   "1": {
     verticalOffset: -220,
+    neckStrapOffset: 1,
+    neckStrapWidth: 4.7,
+    // neckStrapClip: 9,
+    breakawayOffset: 0,
     scale: 1,
     hookWidth: 230,
     hookHeight: 100,
@@ -19,6 +23,9 @@ export const lanyardSizes = {
 
   "7/8": {
     verticalOffset: -200,
+    neckStrapOffset: 0,
+    neckStrapWidth: 5.2,
+    breakawayOffset: 0,
     scale: 1,
     hookWidth: 230,
     hookHeight: 120,
@@ -31,11 +38,14 @@ export const lanyardSizes = {
     hookTop: 770,
     cardTop: -65,
     left: { rotate: -20, translateX: "-198px", origin: "top right" },
-    right: { rotate: 20, translateX: "140px", origin: "top left" },
+    right: { rotate: 20, translateX: "144px", origin: "top left" },
   },
 
   "3/4": {
     verticalOffset: -200,
+    neckStrapOffset: 1,
+    neckStrapWidth: 5.8,
+    breakawayOffset: 7,
     scale: 1,
     hookWidth: 230,
     hookHeight: 120,
@@ -48,11 +58,14 @@ export const lanyardSizes = {
     hookTop: 760,
     cardTop: -65,
     left: { rotate: -20, translateX: "-195px", origin: "top right" },
-    right: { rotate: 20, translateX: "143px", origin: "top left" },
+    right: { rotate: 20, translateX: "144px", origin: "top left" },
   },
 
   "5/8": {
     verticalOffset: -200,
+    neckStrapOffset: 1,
+    neckStrapWidth: 6.6,
+    breakawayOffset: 11,
     scale: 1,
     hookWidth: 230,
     hookHeight: 120,
@@ -65,11 +78,14 @@ export const lanyardSizes = {
     hookTop: 758,
     cardTop: -70,
     left: { rotate: -20, translateX: "-193px", origin: "top right" },
-    right: { rotate: 20, translateX: "146px", origin: "top left" },
+    right: { rotate: 20, translateX: "148px", origin: "top left" },
   },
 
   "1/2": {
     verticalOffset: -200,
+    neckStrapOffset: 0,
+    neckStrapWidth: 7.5,
+    breakawayOffset: 15,
     scale: 1,
     hookWidth: 230,
     hookHeight: 120,
@@ -81,7 +97,7 @@ export const lanyardSizes = {
     connectorTop: 714,
     hookTop: 756,
     cardTop: -70,
-    left: { rotate: -20, translateX: "-189px", origin: "top right" },
+    left: { rotate: -20, translateX: "-190px", origin: "top right" },
     right: { rotate: 20, translateX: "149px", origin: "top left" },
   },
 };

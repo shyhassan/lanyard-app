@@ -22,7 +22,7 @@ function LanyardColor({ lanyardColor, setLanyardColor }) {
 
   return (
     <div className="space-y-3">
-      <h2 className="text-3xl font-bold">COLORS</h2>
+      <h2 className="text-3xl font-bold">COLOR</h2>
 
       {/* Search Input */}
       <input

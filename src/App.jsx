@@ -7,16 +7,24 @@ import LanyardHooks from "./components/LanyardHooks";
 import LanyardText from "./components/LanyardText";
 import { cards } from "./assets";
 import { hooksList } from "./components/LanyardHooks";
+import LanyardFinishing from "./components/LanyardFinishing";
+import { finishingList } from "./components/LanyardFinishing";
+import LanyardBreakaway from "./components/LanyardBreakaway";
+import { breakawayList } from "./components/LanyardBreakaway";
 
 function App() {
   const [selectedCard, setSelectedCard] = useState(cards[0]);
   const [lanyardSize, setLanyardSize] = useState("1");
-  const [lanyardColor, setLanyardColor] = useState("#6B7280");
+  const [lanyardColor, setLanyardColor] = useState("#c6c8cd");
   const [selectedHook, setSelectedHook] = useState(hooksList[2]);
   const [lanyardText, setLanyardText] = useState("");
   const [fontFamily, setFontFamily] = useState("Arial, sans-serif");
   const [fontSize, setFontSize] = useState(14);
   const [textColor, setTextColor] = useState("#FFFFFF");
+  const [selectedFinishing, setSelectedFinishing] = useState(finishingList[0]);
+  const [selectedBreakaway, setSelectedBreakaway] = useState(breakawayList[0]);
+  const [spaceBetweenText, setSpaceBetweenText] = useState(16);
+  const [spaceBetweenTextImage, setSpaceBetweenTextImage] = useState(16);
 
   return (
     <div className="h-screen w-full overflow-hidden">
@@ -26,15 +34,20 @@ function App() {
 <div className="md:col-span-7 h-screen overflow-y-auto flex items-start justify-center bg-gray-50 p-8 pt-12">
   <div style={{ transform: "scale(1.3)", transformOrigin: "top center" }}>
     <LanyardCard
-      selectedCard={selectedCard}
-      lanyardSize={lanyardSize}
-      lanyardColor={lanyardColor}
-      selectedHook={selectedHook}
-      lanyardText={lanyardText}
-      fontFamily={fontFamily}
-      fontSize={fontSize}
-      textColor={textColor}
-    />
+  selectedCard={selectedCard}
+  lanyardSize={lanyardSize}
+  lanyardColor={lanyardColor}
+  selectedHook={selectedHook}
+  lanyardText={lanyardText}
+  fontFamily={fontFamily}
+  fontSize={fontSize}
+  textColor={textColor}
+  selectedFinishing={selectedFinishing}
+  selectedBreakaway={selectedBreakaway}
+  spaceBetweenText={spaceBetweenText}
+  spaceBetweenTextImage={spaceBetweenTextImage}
+  />
+
   </div>
 </div>
 
@@ -55,19 +68,17 @@ function App() {
 
             {/* TEXT — after COLOR */}
             <LanyardText
-              lanyardText={lanyardText}
-              setLanyardText={setLanyardText}
-              fontFamily={fontFamily}
-              setFontFamily={setFontFamily}
-              fontSize={fontSize}
-              setFontSize={setFontSize}
-              textColor={textColor}
-              setTextColor={setTextColor}
+                lanyardText={lanyardText} setLanyardText={setLanyardText}
+                fontFamily={fontFamily} setFontFamily={setFontFamily}
+                fontSize={fontSize} setFontSize={setFontSize}
+                textColor={textColor} setTextColor={setTextColor}
+                spaceBetweenText={spaceBetweenText} setSpaceBetweenText={setSpaceBetweenText}
+                spaceBetweenTextImage={spaceBetweenTextImage} setSpaceBetweenTextImage={setSpaceBetweenTextImage}
             />
 
            {/* Cards */}
 <div>
-  <h2 className="text-3xl font-bold mb-3">CARDS</h2>
+  <h2 className="text-3xl font-bold mb-3">CARD</h2>
 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
   {cards.map((card, i) => (
     <div
@@ -128,6 +139,21 @@ function App() {
               selectedHook={selectedHook}
               setSelectedHook={setSelectedHook}
             />
+
+            {/* Finishing Option */}
+            <LanyardFinishing
+              selectedFinishing={selectedFinishing}
+              setSelectedFinishing={setSelectedFinishing}
+            />
+
+            {/* Breakaway */}
+          <LanyardBreakaway
+              selectedBreakaway={selectedBreakaway}
+              setSelectedBreakaway={setSelectedBreakaway}
+          />
+
+
+
           </div>
         </div>
 

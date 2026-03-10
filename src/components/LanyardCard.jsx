@@ -1,13 +1,20 @@
 import { lanyardSizes } from "../config/LanyardSizes";
 
-function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, lanyardText, fontFamily, fontSize, textColor }) {
+function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, lanyardText, fontFamily, fontSize, textColor, selectedFinishing, selectedBreakaway, spaceBetweenText, spaceBetweenTextImage }) {
   if (!selectedCard) return null;
 
   const currentSize = lanyardSizes[lanyardSize] || lanyardSizes["1"];
   const hookHeight = selectedHook?.hookHeight || 64;
   const dynamicCardTop = currentSize.cardTop + (hookHeight - 64);
   const hookDisplayWidth = selectedHook?.displayWidth || currentSize.hookWidth;
-  const hookDisplayTop = selectedHook?.displayTop || (currentSize.hookTop + (currentSize.verticalOffset || 0));
+  const hookDisplayTop =
+    selectedHook?.displayTop?.[lanyardSize] !== undefined
+      ? selectedHook.displayTop[lanyardSize]
+      : selectedHook?.displayTop !== undefined
+      ? selectedHook.displayTop
+      : currentSize.hookTop + (currentSize.verticalOffset || 0);
+
+  const neckStrapTop = currentSize.connectorHeight + (currentSize.strapTopOffset || 0) + (currentSize.verticalOffset || 0) + (currentSize.neckStrapOffset || 0);
 
   return (
     <div
@@ -19,20 +26,78 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, la
         className="relative flex justify-center items-start w-full"
         style={{ height: `${(currentSize.strapHeight + currentSize.connectorHeight + (selectedHook ? currentSize.hookWidth : 0)) * (currentSize.scale || 1)}px` }}
       >
-        {/* CONNECTOR */}
+
+        {/* NECK STRAP */}
         <div
-          className="absolute"
+          className="absolute left-1/2 -translate-x-1/2 overflow-hidden flex items-center justify-center"
           style={{
-            width: `${currentSize.strapWidth}px`,
-            height: `${currentSize.connectorHeight}px`,
-            top: `${currentSize.connectorTop + (currentSize.verticalOffset || 0)}px`,
-            left: "50%",
-            transform: "translateX(-50%)",
-            zIndex: 3,
+            width: `${currentSize.strapWidth * (currentSize.neckStrapWidth || 5.5)}px`,
+            height: `${currentSize.strapWidth}px`,
+            top: `${neckStrapTop}px`,
             backgroundColor: lanyardColor,
-            background: `linear-gradient(to right, rgba(0,0,0,0.18) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.18) 100%), ${lanyardColor}`,
+            background: `linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.15) 100%), ${lanyardColor}`,
+            zIndex: 0,
           }}
-        />
+        >
+          {lanyardText && (
+            <span
+              style={{
+                fontFamily,
+                fontSize: `${fontSize}px`,
+                color: textColor,
+                whiteSpace: "nowrap",
+                display: "inline-block",
+                letterSpacing: `${spaceBetweenText}px`,
+                userSelect: "none",
+              }}
+            >
+              {lanyardText}
+            </span>
+          )}
+        </div>
+
+        {/* BREAKAWAY */}
+        {selectedBreakaway && selectedBreakaway.title !== "No Breakaway" && (
+          <img
+            src={selectedBreakaway.src}
+            alt={selectedBreakaway.title}
+            className="absolute left-1/2 -translate-x-1/2"
+            style={{
+              width: `${currentSize.strapWidth * (selectedBreakaway.displayWidth || 2.5)}px`,
+              top: `${neckStrapTop + (selectedBreakaway.displayTop?.[lanyardSize] || 0)}px`,
+              zIndex: 5,
+            }}
+          />
+        )}
+
+        {/* CONNECTOR / FINISHING */}
+        {selectedFinishing?.src ? (
+          <img
+            src={selectedFinishing.src}
+            alt={selectedFinishing.title}
+            className="absolute left-1/2 -translate-x-1/2"
+            style={{
+              width: `${currentSize.strapWidth * 2}px`,
+              top: `${currentSize.connectorTop + (currentSize.verticalOffset || 0)}px`,
+              zIndex: 3,
+              filter: "drop-shadow(1px 2px 3px rgba(0,0,0,0.2))",
+            }}
+          />
+        ) : (
+          <div
+            className="absolute"
+            style={{
+              width: `${currentSize.strapWidth}px`,
+              height: `${currentSize.connectorHeight}px`,
+              top: `${currentSize.connectorTop + (currentSize.verticalOffset || 0)}px`,
+              left: "50%",
+              transform: "translateX(-50%)",
+              zIndex: 3,
+              backgroundColor: lanyardColor,
+              background: `linear-gradient(to right, rgba(0,0,0,0.18) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.18) 100%), ${lanyardColor}`,
+            }}
+          />
+        )}
 
         {/* LEFT STRAP + TEXT */}
         <div
@@ -46,6 +111,7 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, la
             transform: `translateX(${currentSize.left.translateX}) rotate(${currentSize.left.rotate}deg)`,
             transformOrigin: currentSize.left.origin,
             zIndex: 1,
+            clipPath: "polygon(0% 10%, 100% 0%, 100% 100%, 0% 100%)",
           }}
         >
           {lanyardText && (
@@ -57,7 +123,8 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, la
                 whiteSpace: "nowrap",
                 transform: "rotate(90deg)",
                 display: "inline-block",
-                letterSpacing: "0.15em",
+                letterSpacing: `${spaceBetweenText}px`,
+                marginTop: `${spaceBetweenTextImage}px`,
                 userSelect: "none",
               }}
             >
@@ -78,6 +145,7 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, la
             transform: `translateX(${currentSize.right.translateX}) rotate(${currentSize.right.rotate}deg)`,
             transformOrigin: currentSize.right.origin,
             zIndex: 1,
+            clipPath: "polygon(0% 0%, 100% 10%, 100% 100%, 0% 100%)",
           }}
         >
           {lanyardText && (
@@ -89,7 +157,8 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, la
                 whiteSpace: "nowrap",
                 transform: "rotate(-90deg)",
                 display: "inline-block",
-                letterSpacing: "0.15em",
+                letterSpacing: `${spaceBetweenText}px`,
+                marginTop: `${spaceBetweenTextImage}px`,
                 userSelect: "none",
               }}
             >
