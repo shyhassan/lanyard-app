@@ -1,12 +1,51 @@
 export const finishingList = [
   { title: "Sewn", src: "" },
-  { title: "Black Bead", src: "https://azxecommercewebsite.s3.us-east-1.amazonaws.com/custom-lanyard/BLACK+BEAD.png" },
-  { title: "Slider", src: "https://azxecommercewebsite.s3.us-east-1.amazonaws.com/custom-lanyard/SLIDER.png" },
-  { title: "Silver Bead", src: "https://azxecommercewebsite.s3.us-east-1.amazonaws.com/custom-lanyard/SILVER+BEAD.png" },
-  { title: "Crimped (Small)", src: "https://azxecommercewebsite.s3.us-east-1.amazonaws.com/custom-lanyard/CRIMPED+(SMALL).png" },
-  { title: "Crimped (Large)", src: "https://azxecommercewebsite.s3.us-east-1.amazonaws.com/custom-lanyard/CRIMPED+(LARGE).png" },
-  { title: "Crimped BLK (Large)", src: "https://azxecommercewebsite.s3.us-east-1.amazonaws.com/custom-lanyard/CRIMPED+BLK+(LARGE).png" },
-  { title: "Crimped BLK (Small)", src: "https://azxecommercewebsite.s3.us-east-1.amazonaws.com/custom-lanyard/CRIMPED+BLK+(SMALL).png" },
+  { 
+    title: "Black Bead", 
+    src: "https://azxecommercewebsite.s3.us-east-1.amazonaws.com/custom-lanyard/BLACK+BEAD.png",
+    displayWidth: 2,
+    displayTop: { "1": 30, "7/8": 50, "3/4": 0, "5/8": 0, "1/2": 0 },
+  },
+  { 
+    title: "Slider", 
+    src: "https://azxecommercewebsite.s3.us-east-1.amazonaws.com/custom-lanyard/SLIDER.png",
+    displayWidth: 2,
+    displayTop: { "1": 30, "7/8": 50, "3/4": 0, "5/8": 0, "1/2": 0 },
+  },
+  { 
+    title: "Silver Bead", 
+    src: "https://azxecommercewebsite.s3.us-east-1.amazonaws.com/custom-lanyard/SILVER+BEAD.png",
+    displayWidth: 2,
+    displayTop: { "1": 30, "7/8": 50, "3/4": 0, "5/8": 0, "1/2": 0 },
+  },
+  { 
+    title: "Crimped (Small)", 
+    src: "https://azxecommercewebsite.s3.us-east-1.amazonaws.com/custom-lanyard/CRIMPED+(SMALL).png",
+    displayWidth: 3.5,
+    displayHeight: 60,
+    displayTop: { "1": 22, "7/8": 0, "3/4": 0, "5/8": 0, "1/2": 0 },
+  },
+  { 
+    title: "Crimped (Large)", 
+    src: "https://azxecommercewebsite.s3.us-east-1.amazonaws.com/custom-lanyard/CRIMPED+(LARGE).png",
+    displayWidth: 2,
+    displayHeight: 60,
+    displayTop: { "1": 20, "7/8": 0, "3/4": 0, "5/8": 0, "1/2": 0 },
+  },
+  { 
+    title: "Crimped BLK (Large)", 
+    src: "https://azxecommercewebsite.s3.us-east-1.amazonaws.com/custom-lanyard/CRIMPED+BLK+(LARGE).png",
+    displayWidth: 2,
+    displayHeight: 60,
+    displayTop: { "1": 20, "7/8": 0, "3/4": 0, "5/8": 0, "1/2": 0 },
+  },
+  { 
+    title: "Crimped BLK (Small)", 
+    src: "https://azxecommercewebsite.s3.us-east-1.amazonaws.com/custom-lanyard/CRIMPED+BLK+(SMALL).png",
+    displayWidth: 3,
+    displayHeight: 60,
+    displayTop: { "1": 20, "7/8": 0, "3/4": 0, "5/8": 0, "1/2": 0 },
+  },
 ];
 
 function LanyardFinishing({ selectedFinishing, setSelectedFinishing }) {

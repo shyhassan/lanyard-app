@@ -15,6 +15,13 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, la
       : currentSize.hookTop + (currentSize.verticalOffset || 0);
 
   const neckStrapTop = currentSize.connectorHeight + (currentSize.strapTopOffset || 0) + (currentSize.verticalOffset || 0) + (currentSize.neckStrapOffset || 0);
+  const connectorTop = currentSize.connectorTop + (currentSize.verticalOffset || 0);
+
+  const svgBackground = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
+    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='51 -87.5 102 150'>
+      <path fill='${lanyardColor}' d='M153-87.5l-22,45v60l22,45H51l22-45v-60l-22-45H153z'/>
+    </svg>`
+  )}`;
 
   return (
     <div
@@ -61,10 +68,12 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, la
           <img
             src={selectedBreakaway.src}
             alt={selectedBreakaway.title}
-            className="absolute left-1/2 -translate-x-1/2"
             style={{
+              position: "absolute",
               width: `${currentSize.strapWidth * (selectedBreakaway.displayWidth || 2.5)}px`,
-              top: `${neckStrapTop + (selectedBreakaway.displayTop?.[lanyardSize] || 0)}px`,
+              top: `${neckStrapTop + (selectedBreakaway.displayTop?.[lanyardSize] ?? 0)}px`,
+              left: "50%",
+              transform: "translateX(-50%)",
               zIndex: 5,
             }}
           />
@@ -72,24 +81,44 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, la
 
         {/* CONNECTOR / FINISHING */}
         {selectedFinishing?.src ? (
-          <img
-            src={selectedFinishing.src}
-            alt={selectedFinishing.title}
-            className="absolute left-1/2 -translate-x-1/2"
-            style={{
-              width: `${currentSize.strapWidth * 2}px`,
-              top: `${currentSize.connectorTop + (currentSize.verticalOffset || 0)}px`,
-              zIndex: 3,
-              filter: "drop-shadow(1px 2px 3px rgba(0,0,0,0.2))",
-            }}
-          />
+          <>
+            {/* SVG background */}
+            <img
+              src={svgBackground}
+              alt="connector background"
+              style={{
+                position: "absolute",
+                width: `${currentSize.strapWidth * (currentSize.connectorSvgWidth || 2)}px`,
+                top: `${connectorTop + (currentSize.connectorSvgOffset ?? 0)}px`,
+                left: "50%",
+                transform: `translateX(-50%) scale(${currentSize.connectorSvgScale || 1})`,
+                transformOrigin: "center top",
+                zIndex: 3,
+              }}
+            />
+            {/* Finishing image */}
+            <img
+  src={selectedFinishing.src}
+  alt={selectedFinishing.title}
+  style={{
+    position: "absolute",
+    width: `${currentSize.strapWidth * (selectedFinishing.displayWidth || 1.5)}px`,
+    height: selectedFinishing.displayHeight ? `${selectedFinishing.displayHeight}px` : "auto",
+    top: `${connectorTop + (selectedFinishing.displayTop?.[lanyardSize] ?? 0)}px`,
+    left: "50%",
+    transform: "translateX(-50%)",
+    zIndex: 4,
+    filter: "drop-shadow(1px 2px 3px rgba(0,0,0,0.2))",
+  }}
+/>
+          </>
         ) : (
           <div
             className="absolute"
             style={{
               width: `${currentSize.strapWidth}px`,
               height: `${currentSize.connectorHeight}px`,
-              top: `${currentSize.connectorTop + (currentSize.verticalOffset || 0)}px`,
+              top: `${connectorTop}px`,
               left: "50%",
               transform: "translateX(-50%)",
               zIndex: 3,
@@ -172,10 +201,12 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, la
           <img
             src={selectedHook.src}
             alt={selectedHook.name}
-            className="absolute left-1/2 -translate-x-1/2"
             style={{
+              position: "absolute",
               width: `${hookDisplayWidth}px`,
               top: `${hookDisplayTop}px`,
+              left: "50%",
+              transform: "translateX(-50%)",
               zIndex: 2,
               filter: "drop-shadow(1px 2px 3px rgba(0,0,0,0.35))",
             }}
