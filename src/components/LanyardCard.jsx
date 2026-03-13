@@ -6,13 +6,26 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, la
   const currentSize = lanyardSizes[lanyardSize] || lanyardSizes["1"];
   const hookHeight = selectedHook?.hookHeight || 64;
   const dynamicCardTop = currentSize.cardTop + (hookHeight - 64);
-  const hookDisplayWidth = selectedHook?.displayWidth || currentSize.hookWidth;
-  const hookDisplayTop =
-    selectedHook?.displayTop?.[lanyardSize] !== undefined
-      ? selectedHook.displayTop[lanyardSize]
-      : selectedHook?.displayTop !== undefined
-      ? selectedHook.displayTop
-      : currentSize.hookTop + (currentSize.verticalOffset || 0);
+
+  const hasSvgFinishing = selectedFinishing?.src ? true : false;
+
+  const hookDisplayWidth = hasSvgFinishing
+    ? (selectedHook?.svgDisplayWidth?.[lanyardSize] ?? selectedHook?.displayWidth ?? currentSize.hookWidth)
+    : (selectedHook?.displayWidth ?? currentSize.hookWidth);
+
+  const hookDisplayTop = hasSvgFinishing
+    ? (selectedHook?.svgDisplayTop?.[lanyardSize] !== undefined
+        ? selectedHook.svgDisplayTop[lanyardSize]
+        : currentSize.hookTop + (currentSize.verticalOffset || 0))
+    : (selectedHook?.displayTop?.[lanyardSize] !== undefined
+        ? selectedHook.displayTop[lanyardSize]
+        : selectedHook?.displayTop !== undefined
+        ? selectedHook.displayTop
+        : currentSize.hookTop + (currentSize.verticalOffset || 0));
+
+  const hookDisplayLeft = hasSvgFinishing
+    ? (selectedHook?.svgDisplayLeft?.[lanyardSize] ?? 0)
+    : 0;
 
   const neckStrapTop = currentSize.connectorHeight + (currentSize.strapTopOffset || 0) + (currentSize.verticalOffset || 0) + (currentSize.neckStrapOffset || 0);
   const connectorTop = currentSize.connectorTop + (currentSize.verticalOffset || 0);
@@ -96,21 +109,48 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, la
                 zIndex: 3,
               }}
             />
+
+            {/* STEM — connects SVG bottom to hook */}
+            <div
+              style={{
+                position: "absolute",
+                width: `${currentSize.strapWidth * (currentSize.connectorStemWidth || 0.3)}px`,
+                height: `${currentSize.connectorStemHeight || 40}px`,
+                top: `${connectorTop + (currentSize.connectorSvgOffset ?? 0) + (currentSize.connectorStemTop || 50)}px`,
+                left: "50%",
+                transform: "translateX(-50%)",
+                backgroundColor: lanyardColor,
+                background: `linear-gradient(to right, rgba(0,0,0,0.18) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.18) 100%), ${lanyardColor}`,
+                zIndex: 6,
+                borderRadius: "2px 2px 40% 40%",
+              }}
+            />
+
             {/* Finishing image */}
             <img
-  src={selectedFinishing.src}
-  alt={selectedFinishing.title}
-  style={{
-    position: "absolute",
-    width: `${currentSize.strapWidth * (selectedFinishing.displayWidth || 1.5)}px`,
-    height: selectedFinishing.displayHeight ? `${selectedFinishing.displayHeight}px` : "auto",
-    top: `${connectorTop + (selectedFinishing.displayTop?.[lanyardSize] ?? 0)}px`,
-    left: "50%",
-    transform: "translateX(-50%)",
-    zIndex: 4,
-    filter: "drop-shadow(1px 2px 3px rgba(0,0,0,0.2))",
-  }}
-/>
+              src={selectedFinishing.src}
+              alt={selectedFinishing.title}
+              style={{
+                position: "absolute",
+                width: `${currentSize.strapWidth * (
+  typeof selectedFinishing.displayWidth === "object"
+    ? (selectedFinishing.displayWidth?.[lanyardSize] ?? 1.5)
+    : (selectedFinishing.displayWidth || 1.5)
+)}px`,
+                // width: `${currentSize.strapWidth * (selectedFinishing.displayWidth || 1.5)}px`,
+                // height: selectedFinishing.displayHeight ? `${selectedFinishing.displayHeight}px` : "auto",
+                height: selectedFinishing.displayHeight
+  ? `${typeof selectedFinishing.displayHeight === "object"
+      ? (selectedFinishing.displayHeight?.[lanyardSize] ?? "auto")
+      : selectedFinishing.displayHeight}px`
+  : "auto",
+                top: `${connectorTop + (selectedFinishing.displayTop?.[lanyardSize] ?? 0)}px`,
+                left: "50%",
+                transform: "translateX(-50%)",
+                zIndex: 4,
+                filter: "drop-shadow(1px 2px 3px rgba(0,0,0,0.2))",
+              }}
+            />
           </>
         ) : (
           <div
@@ -205,7 +245,7 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, la
               position: "absolute",
               width: `${hookDisplayWidth}px`,
               top: `${hookDisplayTop}px`,
-              left: "50%",
+              left: `calc(50% + ${hookDisplayLeft}px)`,
               transform: "translateX(-50%)",
               zIndex: 2,
               filter: "drop-shadow(1px 2px 3px rgba(0,0,0,0.35))",

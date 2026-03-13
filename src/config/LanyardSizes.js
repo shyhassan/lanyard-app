@@ -5,12 +5,20 @@ export const lanyardSizes = {
     neckStrapOffset: 1,
     neckStrapWidth: 4.7,
     breakawayOffset: 0,
-    connectorSvgWidth: 1,
+    
+    connectorSvgWidth: 1,    //SVG
     connectorSvgOffset: 1,
     connectorSvgScale: 1,
+
+    connectorStemWidth: 1,   // STEM
+    connectorStemHeight: 15,   // height in px
+    connectorStemTop: 85,      
+
+
+
     scale: 1,
-    hookWidth: 230,
-    hookHeight: 100,
+    // hookWidth:240,
+    // hookHeight: 100,
     strapTopOffset: 200,
     cardWidth: 500,
     strapWidth: 60,
@@ -28,12 +36,18 @@ export const lanyardSizes = {
     neckStrapOffset: 0,
     neckStrapWidth: 5.2,
     breakawayOffset: 0,
+
     connectorSvgWidth: 1,
     connectorSvgOffset: 20,
     connectorSvgScale: 1,
+
+    connectorStemWidth: 1, // width multiplier of strapWidth
+    connectorStemHeight: 15,   // height in px
+    connectorStemTop: 79,      // offset from connectorTop downward
+
     scale: 1,
-    hookWidth: 230,
-    hookHeight: 120,
+    // hookWidth: 230,
+    // hookHeight: 120,
     strapTopOffset: 200,
     cardWidth: 500,
     strapWidth: 55,
@@ -43,7 +57,7 @@ export const lanyardSizes = {
     hookTop: 770,
     cardTop: -65,
     left: { rotate: -20, translateX: "-198px", origin: "top right" },
-    right: { rotate: 20, translateX: "143px", origin: "top left" },
+    right: { rotate: 20, translateX: "142px", origin: "top left" },
   },
 
   "3/4": {
@@ -51,12 +65,17 @@ export const lanyardSizes = {
     neckStrapOffset: 1,
     neckStrapWidth: 5.8,
     breakawayOffset: 7,
-    connectorSvgWidth: 0.9,
-    connectorSvgOffset: 15,
+    connectorSvgWidth: 1.0,
+    connectorSvgOffset: 10,
     connectorSvgScale: 1,
+
+   connectorStemWidth: 1.0,//width multiplier of strapWidth
+    connectorStemHeight: 14,   // height in px
+    connectorStemTop: 71, 
+
     scale: 1,
-    hookWidth: 230,
-    hookHeight: 120,
+    // hookWidth: 230,
+    // hookHeight: 120,
     strapTopOffset: 200,
     cardWidth: 500,
     strapWidth: 50,
@@ -74,9 +93,14 @@ export const lanyardSizes = {
     neckStrapOffset: 1,
     neckStrapWidth: 6.6,
     breakawayOffset: 11,
-    connectorSvgWidth: 1,
-    connectorSvgOffset: 14,
+    connectorSvgWidth: 1.1,
+    connectorSvgOffset: 10,
     connectorSvgScale: 1,
+
+    connectorStemWidth: 1.1,//width multiplier of strapWidth
+    connectorStemHeight: 15,   // height in px
+    connectorStemTop: 71, 
+
     scale: 1,
     hookWidth: 230,
     hookHeight: 120,
@@ -89,7 +113,7 @@ export const lanyardSizes = {
     hookTop: 758,
     cardTop: -70,
     left: { rotate: -20, translateX: "-194px", origin: "top right" },
-    right: { rotate: 20, translateX: "148px", origin: "top left" },
+    right: { rotate: 20, translateX: "149px", origin: "top left" },
   },
 
   "1/2": {
@@ -100,6 +124,11 @@ export const lanyardSizes = {
     connectorSvgWidth: 1,
     connectorSvgOffset: 12,
     connectorSvgScale: 1,
+
+    connectorStemWidth: 1,//width multiplier of strapWidth
+    connectorStemHeight: 14,   // height in px
+    connectorStemTop: 57, 
+
     scale: 1,
     hookWidth: 230,
     hookHeight: 120,
