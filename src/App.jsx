@@ -11,6 +11,7 @@ import LanyardFinishing from "./components/LanyardFinishing";
 import { finishingList } from "./components/LanyardFinishing";
 import LanyardBreakaway from "./components/LanyardBreakaway";
 import { breakawayList } from "./components/LanyardBreakaway";
+import LanyardLogo from "./components/LanyardLogo";
 
 function App() {
   const [selectedCard, setSelectedCard] = useState(cards[0]);
@@ -25,6 +26,11 @@ function App() {
   const [selectedBreakaway, setSelectedBreakaway] = useState(breakawayList[0]);
   const [spaceBetweenText, setSpaceBetweenText] = useState(16);
   const [spaceBetweenTextImage, setSpaceBetweenTextImage] = useState(16);
+  const [selectedLogo, setSelectedLogo] = useState(null);
+  const [logoSize, setLogoSize] = useState(50);
+  const [logoPosition, setLogoPosition] = useState(0);
+  const [logoRepeat, setLogoRepeat] = useState(1);
+  const [logoSpacing, setLogoSpacing] = useState(60);
 
   return (
     <div className="h-screen w-full overflow-hidden">
@@ -46,6 +52,12 @@ function App() {
   selectedBreakaway={selectedBreakaway}
   spaceBetweenText={spaceBetweenText}
   spaceBetweenTextImage={spaceBetweenTextImage}
+  
+selectedLogo={selectedLogo}
+logoSize={logoSize}
+logoPosition={logoPosition}
+logoRepeat={logoRepeat}
+logoSpacing={logoSpacing}
   />
 
   </div>
@@ -133,6 +145,19 @@ function App() {
                 ))}
               </div>
             </div> */}
+
+           <LanyardLogo
+  selectedLogo={selectedLogo}
+  setSelectedLogo={setSelectedLogo}
+  logoSize={logoSize}
+  setLogoSize={setLogoSize}
+  logoPosition={logoPosition}
+  setLogoPosition={setLogoPosition}
+  logoRepeat={logoRepeat}
+  setLogoRepeat={setLogoRepeat}
+  logoSpacing={logoSpacing}
+  setLogoSpacing={setLogoSpacing}
+/>
 
             {/* Hooks */}
             <LanyardHooks

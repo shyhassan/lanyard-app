@@ -1,13 +1,16 @@
 import { lanyardSizes } from "../config/LanyardSizes";
 
-function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, lanyardText, fontFamily, fontSize, textColor, selectedFinishing, selectedBreakaway, spaceBetweenText, spaceBetweenTextImage }) {
+function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, lanyardText, fontFamily, fontSize, textColor, selectedFinishing, selectedBreakaway, spaceBetweenText, spaceBetweenTextImage, selectedLogo, logoSize, logoPosition, logoRepeat, logoSpacing }) {
   if (!selectedCard) return null;
 
   const currentSize = lanyardSizes[lanyardSize] || lanyardSizes["1"];
   const hookHeight = selectedHook?.hookHeight || 64;
-  const dynamicCardTop = currentSize.cardTop + (hookHeight - 64);
 
   const hasSvgFinishing = selectedFinishing?.src ? true : false;
+
+  const dynamicCardTop = hasSvgFinishing && selectedHook?.svgCardTop?.[lanyardSize]
+    ? selectedHook.svgCardTop[lanyardSize]
+    : currentSize.cardTop + (hookHeight - 64);
 
   const hookDisplayWidth = hasSvgFinishing
     ? (selectedHook?.svgDisplayWidth?.[lanyardSize] ?? selectedHook?.displayWidth ?? currentSize.hookWidth)
@@ -29,6 +32,7 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, la
 
   const neckStrapTop = currentSize.connectorHeight + (currentSize.strapTopOffset || 0) + (currentSize.verticalOffset || 0) + (currentSize.neckStrapOffset || 0);
   const connectorTop = currentSize.connectorTop + (currentSize.verticalOffset || 0);
+  const leftStrapTop = currentSize.connectorHeight + (currentSize.strapTopOffset || 0) + (currentSize.verticalOffset || 0);
 
   const svgBackground = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
     `<svg xmlns='http://www.w3.org/2000/svg' viewBox='51 -87.5 102 150'>
@@ -44,7 +48,7 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, la
       {/* STRAPS CONTAINER */}
       <div
         className="relative flex justify-center items-start w-full"
-        style={{ height: `${(currentSize.strapHeight + currentSize.connectorHeight + (selectedHook ? currentSize.hookWidth : 0)) * (currentSize.scale || 1)}px` }}
+        style={{ height: `${(currentSize.strapHeight + currentSize.connectorHeight + (selectedHook ? hookDisplayWidth : 0)) * (currentSize.scale || 1)}px` }}
       >
 
         {/* NECK STRAP */}
@@ -95,7 +99,6 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, la
         {/* CONNECTOR / FINISHING */}
         {selectedFinishing?.src ? (
           <>
-            {/* SVG background */}
             <img
               src={svgBackground}
               alt="connector background"
@@ -109,8 +112,6 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, la
                 zIndex: 3,
               }}
             />
-
-            {/* STEM — connects SVG bottom to hook */}
             <div
               style={{
                 position: "absolute",
@@ -125,25 +126,21 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, la
                 borderRadius: "2px 2px 40% 40%",
               }}
             />
-
-            {/* Finishing image */}
             <img
               src={selectedFinishing.src}
               alt={selectedFinishing.title}
               style={{
                 position: "absolute",
                 width: `${currentSize.strapWidth * (
-  typeof selectedFinishing.displayWidth === "object"
-    ? (selectedFinishing.displayWidth?.[lanyardSize] ?? 1.5)
-    : (selectedFinishing.displayWidth || 1.5)
-)}px`,
-                // width: `${currentSize.strapWidth * (selectedFinishing.displayWidth || 1.5)}px`,
-                // height: selectedFinishing.displayHeight ? `${selectedFinishing.displayHeight}px` : "auto",
+                  typeof selectedFinishing.displayWidth === "object"
+                    ? (selectedFinishing.displayWidth?.[lanyardSize] ?? 1.5)
+                    : (selectedFinishing.displayWidth || 1.5)
+                )}px`,
                 height: selectedFinishing.displayHeight
-  ? `${typeof selectedFinishing.displayHeight === "object"
-      ? (selectedFinishing.displayHeight?.[lanyardSize] ?? "auto")
-      : selectedFinishing.displayHeight}px`
-  : "auto",
+                  ? `${typeof selectedFinishing.displayHeight === "object"
+                      ? (selectedFinishing.displayHeight?.[lanyardSize] ?? "auto")
+                      : selectedFinishing.displayHeight}px`
+                  : "auto",
                 top: `${connectorTop + (selectedFinishing.displayTop?.[lanyardSize] ?? 0)}px`,
                 left: "50%",
                 transform: "translateX(-50%)",
@@ -168,14 +165,14 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, la
           />
         )}
 
-        {/* LEFT STRAP + TEXT */}
+        {/* LEFT STRAP + TEXT + LOGO */}
         <div
           className="absolute overflow-hidden flex items-center justify-center"
           style={{
             width: `${currentSize.strapWidth}px`,
             height: `${currentSize.strapHeight}px`,
             background: `linear-gradient(to right, rgba(0,0,0,0.18) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.18) 100%), ${lanyardColor}`,
-            top: `${currentSize.connectorHeight + (currentSize.strapTopOffset || 0) + (currentSize.verticalOffset || 0)}px`,
+            top: `${leftStrapTop}px`,
             left: "50%",
             transform: `translateX(${currentSize.left.translateX}) rotate(${currentSize.left.rotate}deg)`,
             transformOrigin: currentSize.left.origin,
@@ -200,16 +197,32 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, la
               {lanyardText}
             </span>
           )}
+          {selectedLogo && Array.from({ length: logoRepeat }).map((_, i) => (
+            <img
+              key={`left-logo-${i}`}
+              src={selectedLogo.src}
+              alt={selectedLogo.name}
+              style={{
+                position: "absolute",
+                width: `${logoSize}px`,
+                transform: "rotate(90deg)",
+                top: `50%`,
+                marginTop: `${logoPosition + i * (logoSize + logoSpacing) - (logoRepeat * (logoSize + logoSpacing)) / 2}px`,
+                objectFit: "contain",
+                userSelect: "none",
+              }}
+            />
+          ))}
         </div>
 
-        {/* RIGHT STRAP + TEXT */}
+        {/* RIGHT STRAP + TEXT + LOGO */}
         <div
           className="absolute overflow-hidden flex items-center justify-center"
           style={{
             width: `${currentSize.strapWidth}px`,
             height: `${currentSize.strapHeight}px`,
             background: `linear-gradient(to right, rgba(0,0,0,0.18) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.18) 100%), ${lanyardColor}`,
-            top: `${currentSize.connectorHeight + (currentSize.strapTopOffset || 0) + (currentSize.verticalOffset || 0)}px`,
+            top: `${leftStrapTop}px`,
             left: "50%",
             transform: `translateX(${currentSize.right.translateX}) rotate(${currentSize.right.rotate}deg)`,
             transformOrigin: currentSize.right.origin,
@@ -234,6 +247,22 @@ function LanyardCard({ selectedCard, lanyardSize, lanyardColor, selectedHook, la
               {lanyardText}
             </span>
           )}
+          {selectedLogo && Array.from({ length: logoRepeat }).map((_, i) => (
+            <img
+              key={`right-logo-${i}`}
+              src={selectedLogo.src}
+              alt={selectedLogo.name}
+              style={{
+                position: "absolute",
+                width: `${logoSize}px`,
+                transform: "rotate(-90deg)",
+                top: `50%`,
+                marginTop: `${logoPosition + i * (logoSize + logoSpacing) - (logoRepeat * (logoSize + logoSpacing)) / 2}px`,
+                objectFit: "contain",
+                userSelect: "none",
+              }}
+            />
+          ))}
         </div>
 
         {/* HOOK */}
